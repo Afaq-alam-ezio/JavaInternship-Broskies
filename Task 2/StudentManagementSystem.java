@@ -14,11 +14,60 @@ class Student{
 
     }
 
-    public Student(int id, String name, double grades){
-
+    public Student(int id, String name, double grades) {
         this.id = id;
         this.name = name;
         this.grades = grades;
+    }
+
+    public void addStudent(Scanner sc){
+
+        System.out.print("Enter id = ");
+            int newId = sc.nextInt();
+            sc.nextLine();
+
+        System.out.print("Enter name = ");
+            String newName = sc.nextLine();
+
+        System.out.print("Enter grades = ");
+            double newGrades = sc.nextDouble();
+
+        this.id = newId;
+        this.name = newName;
+        this.grades = newGrades;
+
+
+    }
+
+    public static void removeStudent(int id, List<Student> student){
+
+        // removing the object reference directly from list will also help in deleting the data stored for that object in class
+        boolean removed = student.removeIf(s -> s.getId() == id);
+        if (removed) {
+            System.out.println("Student with ID = " + id + " removed successfully.");
+        } else {
+            System.out.println("No student found with ID = " + id);
+        }
+    }
+
+    public static void displayStudents(List<Student> student){
+
+        int i = 1;
+        for(Student s : student){
+
+            System.out.println("Student " + i + " details below :" + 
+
+            //manual task below
+                // "\nId = " + s.getId() +
+                // "\nName = " + s.getName() +
+                // "\nGrades = " + s.getGrades()
+
+                    s.toString()
+                );
+
+            i++;
+        }
+
     }
 
     @Override
@@ -81,17 +130,8 @@ public class StudentManagementSystem{
 
                 case 1:
 
-                    System.out.print("Enter id = ");
-                        int newId = sc.nextInt();
-                        sc.nextLine();
-
-                    System.out.print("Enter name = ");
-                        String newName = sc.nextLine();
-
-                    System.out.print("Enter grades = ");
-                        double newGrades = sc.nextDouble();
-
-                    Student newStudent = new Student(newId, newName, newGrades);
+                    Student newStudent = new Student();
+                    newStudent.addStudent(sc);
                     student.add(newStudent);
 
                     break;
@@ -101,34 +141,20 @@ public class StudentManagementSystem{
                     System.out.print("Enter id to remove = ");
                     int removalId = sc.nextInt();
 
-                    // removing the object directly will also help in loosing the data for that object in class
-                    student.removeIf(s -> s.getId() == removalId);
-
+                    Student.removeStudent(removalId, student);
+                   
                     break;
                     
                 case 3:
 
                     System.out.println("Below are the Student details : \n");
-                    int i = 1;
-                    for(Student s : student){
-
-                        System.out.println("Student " + i + " details below :" + 
-
-                            // "\nId = " + s.getId() +
-                            // "\nName = " + s.getName() +
-                            // "\nGrades = " + s.getGrades()
-
-                            s.toString()
-                            );
-
-                        i++;
-                    }
+                    Student.displayStudents(student);
 
                     break;
                 
                 case 4:
 
-                System.out.println("\n\tThanks for using.\n\tApplication closed!");
+                System.out.println("\n\tThanks for using the application.\n\tApplication closed!\n\tEngineered by Afaq.");
                     sc.close();
                     return;
 

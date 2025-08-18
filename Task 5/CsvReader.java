@@ -24,7 +24,6 @@ public class CsvReader{
         try{
 
             Reader = new BufferedReader(new FileReader("D:\\JavaInternship@BroSkiesHub\\Task 4\\Products.csv"));
-
             Writer = new BufferedWriter(new FileWriter("D:\\JavaInternship@BroSkiesHub\\Task 4\\NewProducts.csv"));
             
             String read;
@@ -37,9 +36,6 @@ public class CsvReader{
 
                 if(ProductList.length < 2 || ProductList[0].isEmpty() || ProductList[1].isEmpty()){
 
-                    Writer.close();
-                    Reader.close();
-
                     throw new InvalidProductDataException("Invalid product row : " + read);
                 }
 
@@ -48,8 +44,10 @@ public class CsvReader{
                 if(convertedPrice > 1000){
 
                     Writer.write(name + ", " + convertedPrice + "\n");
-                }   
+                }
             }
+
+            System.out.println("Read and Write completed successfully!");
         }
         catch(Exception e){
 
@@ -79,10 +77,8 @@ public class CsvReader{
             }
             catch(Exception e){
 
-                System.out.println("Error while closing resources. + e");
+                System.out.println("Error while closing resources." + e);
             }
-            
-            System.out.println("Read and Write completed successfully!");
         }
     }
 }

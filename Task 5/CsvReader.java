@@ -23,8 +23,8 @@ public class CsvReader{
         BufferedWriter Writer = null;
         try{
 
-            Reader = new BufferedReader(new FileReader("D:\\JavaInternship@BroSkiesHub\\Task 4\\Products.csv"));
-            Writer = new BufferedWriter(new FileWriter("D:\\JavaInternship@BroSkiesHub\\Task 4\\NewProducts.csv"));
+            Reader = new BufferedReader(new FileReader("D:\\JavaInternship@BroSkiesHub\\Task 5\\sample.csv"));
+            Writer = new BufferedWriter(new FileWriter("D:\\JavaInternship@BroSkiesHub\\Task 5\\NewProducts.csv"));
             
             String read;
             while((read = Reader.readLine()) != null){
